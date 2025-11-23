@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragment_home"
+    >
+
+    <fragment
+        android:id="@+id/fragment_home"
+        android:name="com.example.nenass.HomeFragment"
+        android:label="Home Fragment"
+        />
+
+    <fragment
+        android:id="@+id/fragment_marketplace"
+        android:name="com.example.nenass.MarketFragment"
+        android:label="Marketplace Fragment"
+        />
+
+    <fragment
+        android:id="@+id/fragment_schedule"
+        android:name="com.example.nenass.ScheduleFragment"
+        android:label="Schedule Fragment"
+        />
+
+    <fragment
+        android:id="@+id/fragment_connection"
+        android:name="com.example.nenass.HomeFragment"
+        android:label="Connection Fragment"
+        />
+
+    <fragment
+        android:id="@+id/fragment_profile"
+        android:name="com.example.nenass.ProfileFragment"
+        android:label="Profile Fragment"
+        />
+
+
+
+
+
+
+</navigation>

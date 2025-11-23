@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.NeNass" parent="Theme.MaterialComponents.DayNight.NoActionBar"/>
+
+    <style name="TitleFont" parent="TextAppearance.Material3.TitleLarge">
+        <item name="fontFamily">@font/pacifico_regular</item>
+        <item name="android:textSize">26sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+
+    <!-- Outer TextInputLayout style -->
+    <style name="LoginTextInputOuterFieldStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:layout_marginBottom">15dp</item>
+    </style>
+
+    <!-- Inner TextInputEditText style -->
+    <style name="LoginTextInputInnerFieldStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">@color/black</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+</resources>
