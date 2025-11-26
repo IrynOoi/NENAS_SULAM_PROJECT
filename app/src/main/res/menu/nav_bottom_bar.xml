@@ -16,7 +16,10 @@
     <item
         android:id="@+id/nav_schedule"
         android:icon="@drawable/nav_calendar"
-        android:title="Harvest Schedule" />
+        android:title="@string/harvest_schedule"
+        />
+
+
 
     <item
         android:id="@+id/nav_connection"
