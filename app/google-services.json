@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "961332354476",
+    "project_id": "nenass-c55f0",
+    "storage_bucket": "nenass-c55f0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:961332354476:android:809ee9c9fce74b7f642e09",
+        "android_client_info": {
+          "package_name": "com.example.nenass"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "961332354476-7o8s0k9gf970b58l9cleb2ltfqot6nv0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.nenass",
+            "certificate_hash": "20902b5b34ec1b0d6cf275d62aea58bd9a879a91"
+          }
+        },
+        {
+          "client_id": "961332354476-9cq5h6qb8ic7cl3g6bdsk5iiud7akjae.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmwqr5cmqtsfID3ztg9--Y2j3lD6uDjF0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "961332354476-9cq5h6qb8ic7cl3g6bdsk5iiud7akjae.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

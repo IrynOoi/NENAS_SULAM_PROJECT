@@ -1,11 +1,11 @@
 //LoginActivity.kt
 package com.example.nenass
 
-import android.util.Log
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.nenass.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -16,17 +16,6 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // ======= DEV MODE START =======
-        val isDevMode = true
-        if (isDevMode) {
-            val intent = Intent(this, HostActivity::class.java)
-            startActivity(intent)
-            finish() // close LoginActivity
-            return // skip the rest of onCreate
-        }
-        // ======= DEV MODE END =======
-        // Inflate binding
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -34,60 +23,70 @@ class LoginActivity : AppCompatActivity() {
 
         // Navigate to RegisterActivity
         binding.newAccBtn.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
 
         // Login button
-        // Inside onCreate()
         binding.signInBtn.setOnClickListener {
             val email = binding.emailInput2.text.toString().trim()
             val pass = binding.passwordInput.text.toString().trim()
 
-            if (email.isNotEmpty() && pass.isNotEmpty()) {
-
-                firebaseAuth.signInWithEmailAndPassword(email, pass)
-                    .addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-
-                            Log.d("LOGIN", "Login successful for user: $email")
-                            Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
-
-                            // TODO: Navigate to next activity
-
-                            val intent = Intent(this, HostActivity::class.java)
-                            startActivity(intent)
-                            finish()
-                        } else {
-
-                            // Print full detailed error in Logcat
-                            Log.e("LOGIN_ERROR", "Login failed", task.exception)
-
-                            // Show readable message to user
-                            Toast.makeText(
-                                this,
-                                "Login failed: ${task.exception?.message}",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    }
-
-            } else {
+            if (email.isEmpty() || pass.isEmpty()) {
                 Toast.makeText(this, "Email and password cannot be empty", Toast.LENGTH_SHORT)
                     .show()
-
-                // Log for debugging
                 Log.w("LOGIN_WARNING", "Attempted login with empty fields")
+                return@setOnClickListener
             }
+
+            // Sign in with Firebase Auth
+            firebaseAuth.signInWithEmailAndPassword(email, pass)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val user = firebaseAuth.currentUser
+                        Log.d("LOGIN", "Login successful for user: $email")
+                        Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
+
+                        // Get Firebase ID token
+                        user?.getIdToken(true)?.addOnSuccessListener { result ->
+                            val token = result.token
+                            if (token != null) {
+                                // Pass token to HostActivity
+                                val intent = Intent(this, HostActivity::class.java)
+                                intent.putExtra("firebase_token", token)
+                                startActivity(intent)
+                                finish()
+                            } else {
+                                Toast.makeText(
+                                    this,
+                                    "Failed to get Firebase token",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                Log.e("LOGIN_TOKEN", "Token is null")
+                            }
+                        }?.addOnFailureListener { e ->
+                            Toast.makeText(
+                                this,
+                                "Failed to get Firebase token",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            Log.e("LOGIN_TOKEN", "Failed to get token", e)
+                        }
+
+                    } else {
+                        Toast.makeText(
+                            this,
+                            "Login failed: ${task.exception?.message}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        Log.e("LOGIN_ERROR", "Login failed", task.exception)
+                    }
+                }
         }
 
         // Back button click listener
         binding.backBtn.setOnClickListener {
-            // Navigate back to CoverPageActivity
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish() // optional, closes LoginActivity so user can't go back here
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
-
     }
 }

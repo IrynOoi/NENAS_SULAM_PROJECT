@@ -10,7 +10,7 @@
     <item
         android:id="@+id/nav_marketplace"
         android:icon="@drawable/nav_marketplace"
-        android:title="Cart"
+        android:title="Marketplace"
      />
 
     <item

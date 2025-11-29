@@ -50,12 +50,13 @@ android {
 
 
 dependencies {
-
+    implementation("com.squareup.picasso:picasso:2.71828")
     implementation("androidx.activity:activity-compose:1.9.0")
     implementation("androidx.compose.ui:ui:1.5.0")
     implementation("androidx.compose.material:material:1.5.0")
     implementation("androidx.compose.ui:ui-tooling-preview:1.5.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
+    implementation("de.hdodenhof:circleimageview:3.1.0")
 
     //Glide
     implementation("com.github.bumptech.glide:glide:5.0.5")
@@ -79,6 +80,11 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.compose.animation.core.android)
+    implementation("com.google.firebase:firebase-database:22.0.0")
+    implementation("com.google.firebase:firebase-auth:24.0.1")
+// and any other Firebase modules you need
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
