@@ -1,10 +1,19 @@
 //ScheduleFragment.kt
 package com.example.nenass
 
+import androidx.compose.material3.ButtonDefaults
+import com.example.nenass.ui.theme.YellowPrimary
+import com.example.nenass.ui.theme.OrangeAccent
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.ui.Alignment
+
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -16,7 +25,9 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -51,57 +62,69 @@ class ScheduleFragment : Fragment() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HarvestScreen(viewModel: HarvestViewModel = viewModel()) {
-    // Collect the crops flow from the ViewModel
     val crops by viewModel.crops.collectAsState()
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
-        // App Bar Title
-        Text(
-            text = "Harvest Calendar",
-            style = MaterialTheme.typography.headlineMedium,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
-
-        // Instructions & Buttons
-        Row(modifier = Modifier.fillMaxWidth()) {
-            Button(onClick = { viewModel.addCrop() }) {
-                Text("Add Crop")
-            }
-            Spacer(modifier = Modifier.width(8.dp))
-            Button(onClick = { /* Save is usually auto-handled, but you can add a manual trigger here */ }) {
-                Text("Save")
-            }
-        }
-
-        // The Calendar Visualization
-        // This renders the chart based on the crops list
-        CalendarView(crops = crops)
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        // The List of Crop Forms
-        // We use weight(1f) so this list takes up the remaining screen space and scrolls
-        LazyColumn(
-            modifier = Modifier.weight(1f)
-        ) {
-            items(crops) { crop ->
-                CropFormView(
-                    crop = crop,
-                    onUpdate = { updatedCrop ->
-                        viewModel.saveCrop(updatedCrop)
-                    },
-                    onDelete = {
-                        // Safely handle nullable ID
-                        crop.id?.let { id -> viewModel.deleteCrop(id) }
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Box(modifier = Modifier.fillMaxWidth()) {
+                        Text(
+                            text = "Harvest Calendar",
+                            modifier = Modifier.align(Alignment.Center)
+                        )
                     }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = OrangeAccent
                 )
-                Spacer(modifier = Modifier.height(16.dp))
+            )
+
+        }
+    ) { paddingValues ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+                .padding(16.dp)
+        ) {
+            // "Add Crop" button
+            Row(modifier = Modifier.fillMaxWidth()) {
+                Button(
+                    onClick = { viewModel.addCrop() },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = YellowPrimary,
+                        contentColor = androidx.compose.ui.graphics.Color.Black // text color
+                    )
+                ) {
+                    Text("Add Crop")
+                }
+
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // Calendar visualization
+            CalendarView(crops = crops)
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // List of crop forms
+            LazyColumn(
+                modifier = Modifier.weight(1f)
+            ) {
+                items(crops) { crop ->
+                    CropFormView(
+                        crop = crop,
+                        onUpdate = { updatedCrop -> viewModel.updateLocalCrop(updatedCrop) },
+                        onSave = { cropToSave -> viewModel.saveCrop(cropToSave) },
+                        onDelete = { crop.id?.let { id -> viewModel.deleteCrop(id) } }
+                    )
+                    Spacer(modifier = Modifier.height(16.dp))
+                }
             }
         }
     }

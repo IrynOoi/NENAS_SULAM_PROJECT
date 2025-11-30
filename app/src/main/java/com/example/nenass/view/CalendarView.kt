@@ -1,3 +1,4 @@
+//CalendarView.kt
 package com.example.nenass
 
 import android.graphics.Paint
@@ -23,9 +24,11 @@ fun CalendarView(crops: List<Crop>) {
     // Calculate total height based on number of crops
     val totalHeight = (crops.size * rowHeight).dp.coerceAtLeast(200.dp)
 
-    Canvas(modifier = Modifier
-        .fillMaxWidth()
-        .height(totalHeight)) {
+    Canvas(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(totalHeight)
+    ) {
         val gridUnit = size.width / 12
 
         // 1. Draw Background Grid & Month Labels
@@ -68,10 +71,11 @@ fun CalendarView(crops: List<Crop>) {
 
                 if (width > 0) {
                     drawRect(
-                        color = Color(0xFFF5FC1E), // Yellow color from your original React app
+                        color = Color(0xFFFFC107), // Yellow-Orange (Amber)
                         topLeft = Offset(startX, yPos),
-                        size = Size(width, 30f)
+                        size = Size(width, 35f)
                     )
+
                 }
             }
         }
