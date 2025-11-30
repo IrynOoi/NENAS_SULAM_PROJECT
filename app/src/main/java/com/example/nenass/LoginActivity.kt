@@ -1,5 +1,5 @@
 //LoginActivity.kt
-//LoginActivity.kt
+
 package com.example.nenass
 
 import android.util.Log
@@ -18,15 +18,15 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // ======= DEV MODE START =======
-        val isDevMode = true
-        if (isDevMode) {
-            val intent = Intent(this, HostActivity::class.java)
-            startActivity(intent)
-            finish() // close LoginActivity
-            return // skip the rest of onCreate
-        }
-        // ======= DEV MODE END =======
+//        // ======= DEV MODE START =======
+//        val isDevMode = true
+//        if (isDevMode) {
+//            val intent = Intent(this, HostActivity::class.java)
+//            startActivity(intent)
+//            finish() // close LoginActivity
+//            return // skip the rest of onCreate
+//        }
+//        // ======= DEV MODE END =======
         // Inflate binding
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
