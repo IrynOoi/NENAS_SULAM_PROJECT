@@ -86,11 +86,12 @@ class MarketFragment : Fragment() {
             .get()
             .addOnSuccessListener { result ->
                 popularModelList.clear()
-                for (document: QueryDocumentSnapshot in result) {
+                for (document in result) {
+                    val rating = document.getString("rating")?.toFloatOrNull() ?: 0f
                     val item = PopularModel(
                         name = document.getString("name") ?: "",
                         description = document.getString("description") ?: "",
-                        rating = (document.get("rating") as? Number)?.toFloat() ?: 0f,
+                        rating = rating,
                         discount = document.getString("discount") ?: "",
                         type = document.getString("type") ?: "",
                         img_url = document.getString("img_url") ?: ""
@@ -103,4 +104,5 @@ class MarketFragment : Fragment() {
                 Log.w(TAG, "Error getting documents.", exception)
             }
     }
+
 }

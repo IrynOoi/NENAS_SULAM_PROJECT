@@ -31,7 +31,7 @@ class ShowList : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_connection)
 
-        titleTv = findViewById(R.id.title)
+        titleTv = findViewById(R.id.title_text)
 
         intent?.let {
             id = it.getStringExtra("id")

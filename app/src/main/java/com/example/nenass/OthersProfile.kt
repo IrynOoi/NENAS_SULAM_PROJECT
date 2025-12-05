@@ -1,4 +1,5 @@
-//OthersProfile.kt
+//OthersProfile.kt for activity_profile
+
 package com.example.nenass
 
 import android.content.Intent

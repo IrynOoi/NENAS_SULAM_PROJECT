@@ -16,14 +16,14 @@ class HostActivity : AppCompatActivity() {
 
         // Load default fragment (e.g., HomeFragment)
         if (savedInstanceState == null) {
-            loadFragment(HomeFragment())
+            loadFragment(MarketFragment())
         }
 
         // Handle bottom navigation item clicks
         navBottom.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.nav_home -> loadFragment(HomeFragment())
-                R.id.nav_marketplace -> loadFragment(MarketFragment())
+                R.id.nav_home -> loadFragment(MarketFragment())
+//                R.id.nav_marketplace -> loadFragment(MarketFragment())
                 R.id.nav_schedule -> loadFragment(ScheduleFragment())
                 R.id.nav_connection -> loadFragment(ConnectionFragment())
                 R.id.nav_profile -> loadFragment(ProfileFragment())

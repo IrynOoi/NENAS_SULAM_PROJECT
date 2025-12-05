@@ -94,6 +94,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth:24.0.1")
     implementation(libs.androidx.media3.effect)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.cardview)
 // and any other Firebase modules you need
 
     testImplementation(libs.junit)

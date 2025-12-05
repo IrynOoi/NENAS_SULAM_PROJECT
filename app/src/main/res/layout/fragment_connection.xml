@@ -7,45 +7,45 @@
     tools:context=".ShowList">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/bar"
         android:background="?android:attr/windowBackground">
 
-
         <androidx.appcompat.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/toolbar"
-            android:background="?android:attr/windowBackground">
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:background="@color/orange">
 
             <RelativeLayout
+                android:id="@+id/title_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/title_text"
+                    android:layout_width="149dp"
                     android:layout_height="wrap_content"
-                    android:text="Title"
-                    android:id="@+id/title"
-                    android:textSize="19sp"
-                    android:fontFamily="@font/montserrat"
-                    android:textColor="@android:color/black" />
-
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="125dp"
+                    android:fontFamily="@font/alice_regular"
+                    android:text="Connection"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
             </RelativeLayout>
-        </androidx.appcompat.widget.Toolbar>
 
+        </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-
+        android:id="@+id/recyclerView_connection"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/recyclerView_connection"
         android:layout_below="@id/bar"
         android:layout_margin="10dp" />
-
 
 </RelativeLayout>
