@@ -52,6 +52,7 @@ android {
 dependencies {
     // Firebase BOM to manage versions
     implementation(platform("com.google.firebase:firebase-bom:32.2.2"))
+    implementation("com.google.firebase:firebase-storage-ktx")
 
 // Firebase modules with KTX
     implementation("com.google.firebase:firebase-auth-ktx")

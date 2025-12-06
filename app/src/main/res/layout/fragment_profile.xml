@@ -7,11 +7,11 @@
     android:background="#FFFFFF">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <!-- Top Header -->
+        <!-- Top Banner -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="180dp"
@@ -20,8 +20,8 @@
 
             <TextView
                 android:id="@+id/titleProfile"
-                android:layout_width="106dp"
-                android:layout_height="43dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Profile"
                 android:textColor="#161414"
                 android:textSize="24sp"
@@ -38,10 +38,10 @@
                 tools:ignore="UseAppTint" />
         </RelativeLayout>
 
-        <!-- Card with Profile Info -->
+        <!-- Profile Card -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="475dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="-60dp"
             android:layout_marginEnd="24dp"
@@ -50,40 +50,56 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="20dp">
 
-                <!-- Profile Image -->
+                <!-- Profile Image + Edit Button -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingLeft="90sp">
+                    android:gravity="center">
 
-                    <ImageView
-                        android:id="@+id/ivProfileImage"
+                    <RelativeLayout
                         android:layout_width="155dp"
-                        android:layout_height="130dp"
-                        android:background="@drawable/circle_pineapple"
-                        android:clipToOutline="true"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/circle_pineapple" />
+                        android:layout_height="130dp">
+
+                        <!-- Circle Profile Image -->
+                        <ImageView
+                            android:id="@+id/ivProfileImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/circle_pineapple"
+                            android:clipToOutline="true"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/circle_pineapple" />
+
+                        <!-- Edit Icon -->
+                        <ImageButton
+                            android:id="@+id/btnEditProfileImage"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/rounded_transparent_white"
+                            android:padding="8dp"
+                            android:src="@drawable/ic_edit"
+                            app:tint="#FB923C"
+                            android:contentDescription="Edit Profile Picture" />
+                    </RelativeLayout>
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="12dp" />
+                    android:layout_height="16dp" />
 
-                <!-- Editable Fields -->
+                <!-- Editable Fields Group -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:orientation="vertical"
-                    android:paddingBottom="12dp">
+                    android:orientation="vertical">
 
-                    <!-- Name Field -->
+                    <!-- Name -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -111,7 +127,7 @@
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
 
-                    <!-- Phone Field -->
+                    <!-- Phone -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -140,7 +156,7 @@
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
 
-                    <!-- Email Field -->
+                    <!-- Email -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -169,7 +185,7 @@
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
 
-                    <!-- Address Field -->
+                    <!-- Address -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -195,7 +211,6 @@
                                 android:textSize="16sp" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
-
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -204,8 +219,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingLeft="90sp"
+            android:gravity="center"
             android:paddingTop="16dp">
 
             <com.google.android.material.button.MaterialButton
